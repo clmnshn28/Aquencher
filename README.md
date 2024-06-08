@@ -2,49 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>README</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
-        h1, h2, h3, h4 {
-            color: #2c3e50;
-        }
-        h1 {
-            font-size: 2em;
-            border-bottom: 2px solid #16a085;
-            padding-bottom: 10px;
-        }
-        h2 {
-            font-size: 1.5em;
-            border-bottom: 1px solid #16a085;
-            padding-bottom: 5px;
-        }
-        h3 {
-            font-size: 1.2em;
-            color: #2980b9;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        ul li {
-            padding-left: 1.2em;
-            text-indent: -1.2em;
-        }
-        ul li::before {
-            content: "• ";
-            color: #16a085;
-        }
-        .icon {
-            margin-right: 10px;
-        }
-    </style>
 </head>
 <body>
 
