@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<h1>🌊 Aquencher: Innovating Water Refilling Station through a Web Application</h1>
+<h1>💧 Aquencher: Innovating Water Refilling Station through a Web Application</h1>
 
 <h2>📖 Overview</h2>
 <p>Aquencher aims to modernize PO’s Purified Drinking Water & Refilling Hub in Malolos, Bulacan, by addressing several operational challenges through the development of a Water Delivery Management System (WDMS). Our goal is to enhance the efficiency, communication, and overall customer experience at the water refilling station.</p>
