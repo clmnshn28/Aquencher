@@ -14,7 +14,7 @@ body{
 background-color: #05a1e4;
 border: 4px solid rgba(124, 227, 252,40%);
 width: 534px;
-height: 792px;
+height: 881px;
 border-top-left-radius: 129px;
 border-top-right-radius: 20px;
 border-bottom-right-radius: 129px;
@@ -108,11 +108,45 @@ form {
 
 .error {
   position: absolute;
-  top: -16px; 
+  top: -13px; 
   right: 2px; 
   color: red;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
+}
+
+/* --- */
+.password-instruction p{
+  font-size: 11px;
+  font-weight: bold;
+  color: #565252;
+  margin: 0;
+}
+.password-instruction ul{
+  margin: 0;
+  margin-bottom: 10px;
+  padding:6px 0px;
+  list-style: none;
+}
+.ekis{
+  color: red;
+  font-weight: bolder;
+  font-size: 1.2em;
+  margin-right: 3px;
+}
+
+.check{
+  color: rgb(9, 185, 9);
+  font-weight: bolder;
+  font-size: 1.2em;
+  margin-right: 3px;
+}
+
+.password-instruction li{
+  font-size: 9px;
+  font-weight: 500;
+  color: #565252;
+  margin: 0;
 }
 /* --- */
 

@@ -24,21 +24,49 @@ const signup = () =>{
   };
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    setError('');
   };
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
+    setError('');
   };
 
+
+  // checking if password match and met the requirement
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return; 
     }
+
+    if (!isPasswordRequirementMet('Be 8-100 characters long') ||
+        !isPasswordRequirementMet('Contain at least one uppercase and one lowercase letter') ||
+        !isPasswordRequirementMet('Contain at least one number or special character')) {
+      setError('Password does not meet the requirements');
+      return;
+    }
     // Proceed with form submission
-    setError(''); // Clear any previous error
+    setError(''); 
 
     console.log('Form submitted');
+  };
+
+  // checking requirement in password
+  const isPasswordRequirementMet = (requirement) => {
+    switch (requirement) {
+      case 'Be 8-100 characters long':
+        return password.length >= 8 && password.length <= 100;
+      case 'Contain at least one uppercase and one lowercase letter':
+        return /[A-Z]/.test(password) && /[a-z]/.test(password);
+      case 'Contain at least one number or special character':
+        return /\d/.test(password) || /[!@#$%^&*(),.?":{}|<>]/.test(password);
+      default:
+        return false;
+    }
+  };
+  const getRequirementIcon = (requirement) => {
+    return isPasswordRequirementMet(requirement) ? <span className='check'>&#10004;</span> : <span className='ekis'>&#10005;</span>;
   };
 
   return (
@@ -97,6 +125,14 @@ const signup = () =>{
             />
             <label>Confirm Password</label>
             {error && <span className="error">{error}</span>}
+          </div>
+          <div className="password-instruction">
+            <p>Your password must include the following</p>
+            <ul>
+              <li>{getRequirementIcon('Be 8-100 characters long')} Be 8-100 characters long</li>
+              <li>{getRequirementIcon('Contain at least one uppercase and one lowercase letter')}Contain at least one uppercase and one lowercase letter</li>
+              <li>{getRequirementIcon('Contain at least one number or special character')} Contain at least one number or special character</li>
+            </ul>
           </div>
         
           <div className="form-footer">
