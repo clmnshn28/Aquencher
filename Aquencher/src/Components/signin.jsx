@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./Css/signin.css"
 import loginLogo from './Assets/loginLogo.png';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 
 const signin = () =>{
 
@@ -30,7 +30,7 @@ const signin = () =>{
         <img className="loginlogo" src={loginLogo} alt="AquencherLogo" />
         <div className="login-box">
           <div className="input-container">
-            <h1>Login</h1>
+            <h1 className='login'>Login</h1>
             
             <form action="" method="post">
               <div className="input-field">
@@ -39,6 +39,7 @@ const signin = () =>{
                   value={username}
                   onChange={handleUsernameChange}
                   placeholder=" "
+                  required
                 />
                 <label>Username</label>
               </div>
@@ -48,6 +49,7 @@ const signin = () =>{
                   value={password}
                   onChange={handlePasswordChange}
                   placeholder=" "
+                  required
                 />
                 <label>Password</label>
                 <span className="toggle-password" onClick={togglePasswordVisibility}>
@@ -64,7 +66,7 @@ const signin = () =>{
               </div>
               <button type="submit">Login</button>
             </form>
-            <p className="signup-text">Don't have an account? <a href="#">Sign Up</a></p>
+            <p className="signup-text">Don't have an account? <Link to="/signup">Sign Up</Link></p>
           </div>
         </div>
       </div>

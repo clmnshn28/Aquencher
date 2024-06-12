@@ -7,7 +7,6 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   font-family: "Poppins", sans-serif;
 }
 
@@ -51,8 +50,9 @@ border-bottom-left-radius: 20px;
 
 /* --- */
 
-h1 {
+.login {
   color: #1372F2;
+  font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
 }
