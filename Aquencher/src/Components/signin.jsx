@@ -3,6 +3,7 @@ import "./Css/signin.css"
 import loginLogo from './Assets/loginLogo.png';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const signin = () =>{
 
@@ -25,14 +26,29 @@ const signin = () =>{
     setShowPassword(!showPassword);
   };
 
+  const navigate = useNavigate();
+
+   // Handle form submission
+   const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Mock validation (replace with actual validation logic)
+    if (username === 'admin' && password === 'Password123') {
+      navigate('/dashboard');
+    } else {
+      alert('Invalid credentials');
+    }
+  };
+
   return(
+    <div className="signin-wrapper">
       <div className="login-container">
         <img className="loginlogo" src={loginLogo} alt="AquencherLogo" />
         <div className="login-box">
           <div className="input-container">
             <h1 className='login'>Login</h1>
             
-            <form action="" method="post">
+            <form onSubmit={handleSubmit} action="" method="post">
               <div className="input-field">
                 <input
                   type="text"
@@ -70,7 +86,7 @@ const signin = () =>{
           </div>
         </div>
       </div>
-
+    </div>
   );
 }
 

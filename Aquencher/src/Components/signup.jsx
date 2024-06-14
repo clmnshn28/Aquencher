@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import "./Css/signup.css"
-import loginLogo from './Assets/loginLogo.png';
 import { Link } from 'react-router-dom';
 
 const signup = () =>{
@@ -70,83 +69,84 @@ const signup = () =>{
   };
 
   return (
-    <div className="signup-container">
-    <h1>Create Account</h1>
-    <div className="signup-box">
-      <div className="input-container">    
-        <form onSubmit={handleSubmit} action="" method="post">
-          <div className="input-field">
-            <input
-              type="text"
-              value={username}
-              onChange={handleUsernameChange}
-              placeholder=" "
-              required
-            />
-            <label>Username</label>
-          </div>
-          <div className="input-field">
-            <input
-              type="text"
-              value={firstname}
-              onChange={handleFirstnameChange}
-              placeholder=" "
-              required
-            />
-            <label>Firstname</label>
-          </div>
-          <div className="input-field">
-            <input
-              type="text"
-              value={lastname}
-              onChange={handleLastnameChange}
-              placeholder=" "
-              required
-            />
-            <label>Lastname</label>
-          </div>
-          <div className="input-field">
-            <input
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-              placeholder=" "
-              required
-            />
-            <label>Password</label>
-          </div>
-          <div className="input-field">
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-              placeholder=" "
-              required
-            />
-            <label>Confirm Password</label>
-            {error && <span className="error">{error}</span>}
-          </div>
-          <div className="password-instruction">
-            <p>Your password must include the following</p>
-            <ul>
-              <li>{getRequirementIcon('Be 8-100 characters long')} Be 8-100 characters long</li>
-              <li>{getRequirementIcon('Contain at least one uppercase and one lowercase letter')}Contain at least one uppercase and one lowercase letter</li>
-              <li>{getRequirementIcon('Contain at least one number or special character')} Contain at least one number or special character</li>
-            </ul>
-          </div>
-        
-          <div className="form-footer">
-            <label>
-              <input type="checkbox" required/> I agree to  <a className="agreement" href="#"> Terms of Service and Privacy Policy.</a>
-            </label>
-          </div>
-          <button type="submit">Sign Up</button>
-        </form>
-        <p className="signin-text">Already have an account?  <Link to="/">Sign In</Link></p>
+    <div className="signup-wrapper">
+      <div className="signup-container">
+      <h1>Create Account</h1>
+      <div className="signup-box">
+        <div className="input-container">    
+          <form onSubmit={handleSubmit} action="" method="post">
+            <div className="input-field">
+              <input
+                type="text"
+                value={username}
+                onChange={handleUsernameChange}
+                placeholder=" "
+                required
+              />
+              <label>Username</label>
+            </div>
+            <div className="input-field">
+              <input
+                type="text"
+                value={firstname}
+                onChange={handleFirstnameChange}
+                placeholder=" "
+                required
+              />
+              <label>Firstname</label>
+            </div>
+            <div className="input-field">
+              <input
+                type="text"
+                value={lastname}
+                onChange={handleLastnameChange}
+                placeholder=" "
+                required
+              />
+              <label>Lastname</label>
+            </div>
+            <div className="input-field">
+              <input
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+                placeholder=" "
+                required
+              />
+              <label>Password</label>
+            </div>
+            <div className="input-field">
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                placeholder=" "
+                required
+              />
+              <label>Confirm Password</label>
+              {error && <span className="error">{error}</span>}
+            </div>
+            <div className="password-instruction">
+              <p>Your password must include the following</p>
+              <ul>
+                <li>{getRequirementIcon('Be 8-100 characters long')} Be 8-100 characters long</li>
+                <li>{getRequirementIcon('Contain at least one uppercase and one lowercase letter')}Contain at least one uppercase and one lowercase letter</li>
+                <li>{getRequirementIcon('Contain at least one number or special character')} Contain at least one number or special character</li>
+              </ul>
+            </div>
+          
+            <div className="form-footer">
+              <label>
+                <input type="checkbox" required/> I agree to  <a className="agreement" href="#"> Terms of Service and Privacy Policy.</a>
+              </label>
+            </div>
+            <button type="submit">Sign Up</button>
+          </form>
+          <p className="signin-text">Already have an account?  <Link to="/">Sign In</Link></p>
+        </div>
       </div>
+     </div>
     </div>
-  </div>
-
   );
 
 }
