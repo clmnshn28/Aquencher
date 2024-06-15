@@ -1,12 +1,12 @@
-import "./Css/dashboardAdmin.css"
+import "./Css/notificationAdmin.css"
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import loginLogo from './Assets/loginLogo.png';
 import notificationClose from './Assets/notificationClose.png';
 import defaultAvatar from './Assets/default-avatar.jpg';
-import dashboardIconOpen from './Assets/dashboard-open.png';
-import notificationIcon from './Assets/notification.png';
+import dashboardIconClose from './Assets/dashboard.png';
+import notificationIconOpen from './Assets/notification-open.png';
 import usersIcon from './Assets/users.png';
 import deliveryIcon from './Assets/delivery.png';
 import transactionIcon from './Assets/transactions.png';
@@ -35,7 +35,6 @@ const DashboardAdmin = () => {
     { subject: 'System Update', description: 'System will be offline temporarily. Update is scheduled for tomorrow at 10:00 AM. Please plan your tasks accordingly.', time: '12 minutes ago', isNew: false },
   ]);
 
-
   const toggleSidebar = () => {
     setSidebarMinimized(!sidebarMinimized);
   };
@@ -60,7 +59,7 @@ const DashboardAdmin = () => {
     <div className="dashboard-header">
       <img className="Aquencher-Logo" src={loginLogo} alt="Aquencher Logo" />
       <div className="admin-profile">
-        <img className="Notification" src={notificationClose} alt="Notification"  onClick={toggleNotifications}  />
+         <img className="Notification" src={notificationClose} alt="Notification"  onClick={toggleNotifications}  />
         {notificationsVisible && (
         <div className="notifications-view">
           <div className="notifications-header">
@@ -108,15 +107,15 @@ const DashboardAdmin = () => {
       </button>
       <img className="adminlogo" src={adminLogo} alt="AdminLogo" />
       <ul>
-        <li className="highlighted">
+        <li>
           <Link to="/Dashboard">
-            <img className="sidebaricon" src={dashboardIconOpen} alt="Dashboard" />
+            <img className="sidebaricon" src={dashboardIconClose} alt="Dashboard" />
             <span className="sidebar-text">Dashboard</span>
           </Link>
         </li>
-        <li>
+        <li className="highlighted">
           <Link to="/Notifications">
-            <img className="sidebaricon" src={notificationIcon} alt="Notifications" />
+            <img className="sidebaricon" src={notificationIconOpen} alt="Notifications" />
             <span className="sidebar-text">Notifications</span>
           </Link>
         </li>
@@ -165,71 +164,18 @@ const DashboardAdmin = () => {
       </ul>
     </div>
     <div className={`dashboard-content ${sidebarMinimized ? 'content-minimized' : ''}`}>
-      <h2 className="welcome">Welcome, Admin!</h2>
-      <div className="first-content">
-        <div className="summary">
-            <div className="summary-item">
-              <div className="summary-title">Employee Total</div>
-              <div className="summary-value">0</div>
-            </div>
-            <div className="summary-item">
-              <div className="summary-title">Available Gallons</div>
-              <div className="summary-value">0</div>
-            </div>
-            <div className="summary-item">
-              <div className="summary-title">Total Refilled Gallons</div>
-              <div className="summary-value">0</div>
-            </div>
-            <div className="summary-item">
-              <div className="summary-title">Borrowed Gallons</div>
-              <div className="summary-value">0</div>
-            </div>
-            <div className="time-date-container">
-              <div className="time">00:00 NN</div>
-              <div className="date">MM / DD / YYYY</div>
-            </div>
+      <div className="notification-container">
+        <h2 className="notification-title">Notifications</h2>
+        <h3 className="notification-earlier">Earlier</h3>
+        {notifications.map((notification, index) => (
+          <div key={index} className={`notification-details ${notification.isNew ? 'new-notification' : ''}`} onClick={() => handleNotificationClick(index)}>
+            <p className="notification-subject">{notification.subject}</p>
+            <p className="notification-description">{notification.description}</p>
+            <p className="notification-time">{notification.time}</p>
+            {notification.isNew && <div className="blue-circle"></div>}
           </div>
+        ))}
       </div>
-      <div className="second-content">
-        <div className="left-content">
-          <div className="delivery">
-            <h3 className="delivery-text">Delivery</h3>
-            <div className="delivery-item-container">
-              <div className="delivery-item">
-                <img className="delivery-image" src={complete} alt=" Complete Image" />
-                <div className="delivery-info">
-                  <div className="delivery-title">Completed Delivery</div>
-                  <div className="delivery-value">0</div>
-                </div>
-              </div>
-              <div className="delivery-item">
-                <img className="delivery-image" src={queue} alt=" Queue Image" />
-                <div className="delivery-info">
-                  <div className="delivery-title">Queue</div>
-                  <div className="delivery-value">0</div>
-                </div>
-              </div>
-              <div className="delivery-item">
-                <img className="delivery-image" src={complete} alt=" Request Image" />
-                <div className="delivery-info"> 
-                  <div className="delivery-title">Requests</div>
-                  <div className="delivery-value">0</div>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-          <div className="graph-container">
-            <p>REFILLED AND BORROWED GALLON PER MONTH</p>
-          </div>
-        </div>
-        <div className="right-content">
-          <div className="returned-gallon-container">
-            <p>RETURNED GALLONS</p>
-          </div>
-        </div>
-      </div>
-
     </div>
 
   </div>

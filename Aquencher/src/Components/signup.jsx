@@ -140,7 +140,7 @@ const signup = () =>{
                 <input type="checkbox" required/> I agree to  <a className="agreement" href="#"> Terms of Service and Privacy Policy.</a>
               </label>
             </div>
-            <button type="submit">Sign Up</button>
+            <button className='signupButton' type="submit">Sign Up</button>
           </form>
           <p className="signin-text">Already have an account?  <Link to="/">Sign In</Link></p>
         </div>

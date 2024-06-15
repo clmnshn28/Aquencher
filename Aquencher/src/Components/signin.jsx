@@ -80,7 +80,7 @@ const signin = () =>{
                 </label>
                 <a className="forgot" href="#">Forgot password?</a>
               </div>
-              <button type="submit">Login</button>
+              <button className='signinButton' type="submit">Login</button>
             </form>
             <p className="signup-text">Don't have an account? <Link to="/signup">Sign Up</Link></p>
           </div>

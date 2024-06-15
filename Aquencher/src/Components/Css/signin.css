@@ -161,7 +161,7 @@ form {
 }
 /* --- */
 
-button {
+.signinButton {
   width: 100%; 
   height: 45px;
   padding: 10px;
@@ -176,11 +176,11 @@ button {
   transition: background-color 1s;
 }
 
-button:hover {
+.signinButton :hover {
   background-color: #0056b3;
 }
 
-button:active{
+.signinButton :active{
   opacity:0.5;
  }
 

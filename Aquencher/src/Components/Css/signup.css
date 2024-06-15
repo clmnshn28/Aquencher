@@ -188,7 +188,7 @@ form {
 }
 /* --- */
 
-button {
+.signupButton {
   width: 100%; 
   height: 45px;
   padding: 10px;
@@ -203,11 +203,11 @@ button {
   transition: background-color 1s;
 }
 
-button:hover {
+.signupButton:hover {
   background-color: #0056b3;
 }
 
-button:active{
+.signupButton:active{
   opacity:0.5;
  }
 
