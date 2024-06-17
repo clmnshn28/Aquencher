@@ -5,6 +5,8 @@ import Signup from './Components/signup';
 import DashboardAdmin from './Components/dashboardAdmin';
 import NotificationAdmin from './Components/notificationAdmin';
 import UsersAdmin from './Components/usersAdmin';
+import DeliveryTaskAdmin from './Components/deliveryTaskAdmin';
+// import DeliveryRequestAdmin from './Components/deliveryRequestAdmin';
 
 const App = () => {
   return (
@@ -15,6 +17,7 @@ const App = () => {
         <Route path='/Dashboard' element={<DashboardAdmin />}/>
         <Route path='/Notifications' element={<NotificationAdmin />}/>
         <Route path='/Users' element={<UsersAdmin />}/>
+        <Route path='/Delivery/Task' element={<DeliveryTaskAdmin/>}/>
       </Routes>
     </Router>
   );

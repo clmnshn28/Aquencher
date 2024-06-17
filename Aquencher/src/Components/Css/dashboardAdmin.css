@@ -1,5 +1,8 @@
-body{
- margin: 0;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+body {
+  font-family: "Poppins", sans-serif;
 }
 
 .dashboard-container{
@@ -32,7 +35,7 @@ body{
   position: relative;
 }
 
-/* notification */
+
 
 .Notification{
   margin-right: 25px;
@@ -58,7 +61,6 @@ body{
   right: 230px;
   width: 350px;
   background-color: #fff;
-  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 15px;
@@ -123,7 +125,6 @@ body{
   margin-top: 6px;
 }
 
-/* profile */
 
 .user-profile-container{
   display: flex;
@@ -156,7 +157,6 @@ body{
   top: 75%;
   background: white;
   border: 1px solid #ccc;
-  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
   z-index: 1000;
   width: 280px;
   border-radius: 5px;
@@ -203,7 +203,6 @@ body{
   margin-left: 5px;
 }
 
-/* sidebar */
 .side-bar {
   background-color: #0A74DA;
   width: 230px;
@@ -236,14 +235,17 @@ body{
 }
 
 .side-bar li{
-  margin: 10px 0;
   display: flex;
-  padding: 8px 10px;
   align-items: center;
+ }
+ 
+.link-sidebar{
+  margin: 10px 0;
+  padding: 8px 10px;
   transition: background-color 0.3s ease; 
 }
 
-.side-bar li:not(.highlighted):hover {
+.link-sidebar:not(.highlighted):hover {
   background-color: rgba(77, 77, 77, 0.1);
   border-radius: 5px;
   padding: 8px 10px;
@@ -273,13 +275,55 @@ body{
   background-color: #EEF7FF;
   border-radius: 5px;
   padding: 8px 10px;
-  padding-left: 0;
+  padding-left: 10px;
 }
 
-.highlighted a {
+.link-sidebar.highlighted .sidebar-text {
   color: #0A74DA;
   font-weight: 600;
 }
+.sub-delivery{
+  margin-bottom: 0;
+}
+/* sub sudebar */
+.link-sub-sidebar{
+  margin-left: 30px;
+}
+
+.sub-sidebar{
+  border-left: 4px solid #EEF7FF;
+}
+
+.sub-sidebar.selected{
+  border-left: 4px solid #0094FF;
+}
+
+.sub-highlighted{
+  background-color: #EEF7FF;
+}
+
+.task-container {
+  display: flex;
+  align-items: center;
+  width: 170px;
+  margin-top: 5px;
+  margin-left: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.sub-highlighted .sidebar-text {
+  color: #0A74DA;
+  font-weight: 600;
+}
+
+.sub-sidebaricon{
+  width: 25px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/* toggle sidebar */
 
 .sidebar-toggle-button{
  width: 30px;
@@ -304,7 +348,9 @@ body{
 }
 
 
-/* ----dashboard content---- */
+
+
+
 
 .dashboard-content{
   
@@ -322,7 +368,6 @@ body{
   color: #0174CF;
 }
 
-/*------  */
 
 .summary {
   display: flex;

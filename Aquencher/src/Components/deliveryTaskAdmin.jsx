@@ -1,19 +1,24 @@
-import "./Css/notificationAdmin.css"
+import './Css/deliveryTaskAdmin.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import loginLogo from './Assets/loginLogo.png';
 import notificationClose from './Assets/notificationClose.png';
-import defaultAvatar from './Assets/default-avatar.jpg';
 import dashboardIconClose from './Assets/dashboard.png';
-import notificationIconOpen from './Assets/notification-open.png';
-import usersIcon from './Assets/users.png';
-import deliveryIcon from './Assets/delivery.png';
-import transactionIcon from './Assets/transactions.png';
-import inventoryIcon from './Assets/inventory.png';
-import announcementsIcon from './Assets/announcement.png';
-import concernsIcon from './Assets/concerns.png';
-import accountIcon from './Assets/account.png';
+import notificationIconClose from './Assets/notification.png';
+import usersIconClose from './Assets/users.png';
+import deliveryIconClose from './Assets/delivery.png';
+import transactionIconClose from './Assets/transactions.png';
+import inventoryIconClose from './Assets/inventory.png';
+import announcementsIconClose from './Assets/announcement.png';
+import concernsIconClose from './Assets/concerns.png';
+import accountIconClose from './Assets/account.png';
+
+import dashboardIconOpen from './Assets/dashboard-open.png';
+import usersIconOpen from './Assets/users-open.png';
+import deliveryIconOpen from './Assets/delivery-open.png';
+
+import loginLogo from './Assets/loginLogo.png';
+import defaultAvatar from './Assets/default-avatar.jpg';
 import adminLogo from './Assets/AdminLogo.png';
 import sidebarButton from './Assets/sidebar-button.png';
 import sidebarButtonOpen from './Assets/sidebar-button-open.png';
@@ -22,8 +27,15 @@ import queue from './Assets/queue.png';
 import dropArrow from './Assets/dropArrow.png';
 import logoutDropdown from './Assets/logout-dropdown.png';
 import accountSettingDropdown from './Assets/account-dropdown.png';
+import searchIcon from './Assets/search-icon.png';
+import filterIcon from './Assets/filter-icon.png';
+import searchBlackIcon from './Assets/black-search-icon.png';
+import userDots from './Assets/user-dots.png';
+import deliveryTaskOpen from './Assets/task-open.png'; 
+import deliveryRequestClose from './Assets/concerns.png';
 
-const NotificationAdmin = () => {
+
+const deliveryTaskAdmin = () =>{
 
   const [sidebarMinimized, setSidebarMinimized] = useState(false);
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -34,6 +46,7 @@ const NotificationAdmin = () => {
     { subject: 'Borrow Request', description: 'John Smith requested to borrow 2 gallons of Po\'s Purified Dispenser Bottle Refill 18.9L', time: '12 minutes ago', isNew: false },
     { subject: 'System Update', description: 'System will be offline temporarily. Update is scheduled for tomorrow at 10:00 AM. Please plan your tasks accordingly.', time: '12 minutes ago', isNew: false },
   ]);
+
 
   const toggleSidebar = () => {
     setSidebarMinimized(!sidebarMinimized);
@@ -59,7 +72,7 @@ const NotificationAdmin = () => {
     <div className="dashboard-header">
       <img className="Aquencher-Logo" src={loginLogo} alt="Aquencher Logo" />
       <div className="admin-profile">
-         <img className="Notification" src={notificationClose} alt="Notification"  onClick={toggleNotifications}  />
+        <img className="Notification" src={notificationClose} alt="Notification"  onClick={toggleNotifications}  />
         {notificationsVisible && (
         <div className="notifications-view">
           <div className="notifications-header">
@@ -113,73 +126,80 @@ const NotificationAdmin = () => {
             <span className="sidebar-text">Dashboard</span>
           </li>
         </Link>
-        <Link to="/Notifications" className='link-sidebar highlighted'>
+        <Link to="/Notifications" className='link-sidebar'>
           <li>
-            <img className="sidebaricon" src={notificationIconOpen} alt="Notifications" />
+            <img className="sidebaricon" src={notificationIconClose} alt="Notifications" />
             <span className="sidebar-text">Notifications</span>
           </li>
         </Link>
         <Link to="/Users" className='link-sidebar'>
           <li>
-            <img className="sidebaricon" src={usersIcon} alt="Users" />
+            <img className="sidebaricon" src={usersIconClose} alt="Users" />
             <span className="sidebar-text">Users</span>
           </li>
         </Link>
-        <Link to="/Delivery/Task" className='link-sidebar'>
+        <Link to="/Delivery/Task" className='link-sidebar highlighted sub-delivery'>
           <li>
-            <img className="sidebaricon" src={deliveryIcon} alt="Delivery" />
+            <img className="sidebaricon" src={deliveryIconOpen} alt="Delivery" />
             <span className="sidebar-text">Delivery</span>
           </li>
         </Link>
+          <ul>
+            <Link to="/Delivery/Task" className='link-sub-sidebar'>
+              <li className='sub-sidebar selected'>
+                <div className="task-container sub-highlighted">
+                  <img className="sub-sidebaricon" src={deliveryTaskOpen} alt="Tasks" />
+                  <span className="sidebar-text">Tasks</span>
+                </div>
+              </li>
+            </Link>
+            <Link to="/Delivery/Requests" className='link-sub-sidebar'>
+              <li className='sub-sidebar'>
+                <div className="task-container">
+                  <img className="sub-sidebaricon" src={deliveryRequestClose} alt="Requests" />
+                  <span className="sidebar-text">Requests</span>
+                  </div>
+              </li>
+            </Link>
+          </ul>
         <Link to="/Transactions" className='link-sidebar'>
           <li>
-            <img className="sidebaricon" src={transactionIcon} alt="Transactions" />
+            <img className="sidebaricon" src={transactionIconClose} alt="Transactions" />
             <span className="sidebar-text">Transactions</span>
           </li>
         </Link>
         <Link to="/Inventory" className='link-sidebar'>
           <li>
-            <img className="sidebaricon" src={inventoryIcon} alt="Inventory" />
+            <img className="sidebaricon" src={inventoryIconClose} alt="Inventory" />
             <span className="sidebar-text">Inventory</span>
           </li>
         </Link>
         <Link to="/Announcements" className='link-sidebar'>
           <li>
-            <img className="sidebaricon" src={announcementsIcon} alt="Announcements" />
+            <img className="sidebaricon" src={announcementsIconClose} alt="Announcements" />
             <span className="sidebar-text">Announcements</span>
           </li>
         </Link>
         <Link to="/Concerns" className='link-sidebar'>
           <li>
-            <img className="sidebaricon" src={concernsIcon} alt="Concerns" />
+            <img className="sidebaricon" src={concernsIconClose} alt="Concerns" />
             <span className="sidebar-text">Concerns</span>
           </li>
         </Link>
         <Link to="/Account" className='link-sidebar'>
           <li>
-            <img className="sidebaricon" src={accountIcon} alt="Account" />
+            <img className="sidebaricon" src={accountIconClose} alt="Account" />
             <span className="sidebar-text">Account</span>
           </li>
         </Link>
       </ul>
     </div>
     <div className={`dashboard-content ${sidebarMinimized ? 'content-minimized' : ''}`}>
-      <div className="notification-container">
-        <h2 className="notification-title">Notifications</h2>
-        <h3 className="notification-earlier">Earlier</h3>
-        {notifications.map((notification, index) => (
-          <div key={index} className={`notification-details ${notification.isNew ? 'new-notification' : ''}`} onClick={() => handleNotificationClick(index)}>
-            <p className="notification-subject">{notification.subject}</p>
-            <p className="notification-description">{notification.description}</p>
-            <p className="notification-time">{notification.time}</p>
-            {notification.isNew && <div className="blue-circle"></div>}
-          </div>
-        ))}
-      </div>
+  
     </div>
 
   </div>
   );
-};
+}
 
-export default NotificationAdmin;
+export default deliveryTaskAdmin;

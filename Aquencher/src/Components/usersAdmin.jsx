@@ -174,60 +174,60 @@ const UsersAdmin = () => {
       </button>
       <img className="adminlogo" src={adminLogo} alt="AdminLogo" />
       <ul>
-        <li>
-          <Link to="/Dashboard">
+        <Link to="/Dashboard" className='link-sidebar'>
+          <li>
             <img className="sidebaricon" src={dashboardIconClose} alt="Dashboard" />
             <span className="sidebar-text">Dashboard</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/Notifications">
+          </li>
+        </Link>
+        <Link to="/Notifications" className='link-sidebar'>
+          <li>
             <img className="sidebaricon" src={notificationIconClose} alt="Notifications" />
             <span className="sidebar-text">Notifications</span>
-          </Link>
-        </li>
-        <li className="highlighted">
-          <Link to="/Users">
+          </li>
+        </Link>
+        <Link to="/Users" className='link-sidebar highlighted'>
+          <li>
             <img className="sidebaricon" src={usersIconOpen} alt="Users" />
             <span className="sidebar-text">Users</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/Delivery">
+          </li>
+        </Link>
+        <Link to="/Delivery/Task" className='link-sidebar'>
+          <li>
             <img className="sidebaricon" src={deliveryIconClose} alt="Delivery" />
             <span className="sidebar-text">Delivery</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/Transactions">
+          </li>
+        </Link>
+        <Link to="/Transactions" className='link-sidebar'>
+          <li>
             <img className="sidebaricon" src={transactionIconClose} alt="Transactions" />
             <span className="sidebar-text">Transactions</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/Inventory">
+          </li>
+        </Link>
+        <Link to="/Inventory" className='link-sidebar'>
+          <li>
             <img className="sidebaricon" src={inventoryIconClose} alt="Inventory" />
             <span className="sidebar-text">Inventory</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/Announcements">
+          </li>
+        </Link>
+        <Link to="/Announcements" className='link-sidebar'>
+          <li>
             <img className="sidebaricon" src={announcementsIconClose} alt="Announcements" />
             <span className="sidebar-text">Announcements</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/Concerns">
+          </li>
+        </Link>
+        <Link to="/Concerns" className='link-sidebar'>
+          <li>
             <img className="sidebaricon" src={concernsIconClose} alt="Concerns" />
             <span className="sidebar-text">Concerns</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/Account">
+          </li>
+        </Link>
+        <Link to="/Account" className='link-sidebar'>
+          <li>
             <img className="sidebaricon" src={accountIconClose} alt="Account" />
             <span className="sidebar-text">Account</span>
-          </Link>
-        </li>
+          </li>
+        </Link>
       </ul>
     </div>
     <div className={`dashboard-content ${sidebarMinimized ? 'content-minimized' : ''}`}>
