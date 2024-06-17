@@ -1,6 +1,8 @@
 import "./Css/usersAdmin.css"
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import NewUserModal from './newUserModal'; 
+import DeactivationModal from './deactivationModal';
 
 import loginLogo from './Assets/loginLogo.png';
 import notificationClose from './Assets/notificationClose.png';
@@ -29,7 +31,7 @@ import filterIcon from './Assets/filter-icon.png';
 import searchBlackIcon from './Assets/black-search-icon.png';
 import userDots from './Assets/user-dots.png';
 
-const DashboardAdmin = () => {
+const UsersAdmin = () => {
 
   const [sidebarMinimized, setSidebarMinimized] = useState(false);
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -44,12 +46,16 @@ const DashboardAdmin = () => {
   const [selectAll, setSelectAll] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const users = [
-    { fullName: 'Karen Joyce Joson', username: '@karenjoycrjoson', phone: '+639123892012', address: '12 Everlasting St. Bulihan', dateRegistered: 'January 5, 2024', status: 'Active', avatar: defaultAvatar },
-    { fullName: 'Celmin Shane Quizon', username: '@clmnshn', phone: '+639123098971', address: 'Malolos, Bulacan', dateRegistered: 'January 15, 2024', status: 'Active', avatar: defaultAvatar },
-    { fullName: 'Miguel Angelo Barruga', username: '@barrugs', phone: '+639123098971', address: 'Malolos, Bulacan', dateRegistered: 'January 15, 2024', status: 'Active', avatar: defaultAvatar },
-    { fullName: 'Francis Harvey Soriano', username: '@harvey', phone: '+639123098971', address: 'Malolos, Bulacan', dateRegistered: 'January 15, 2024', status: 'Active', avatar: defaultAvatar },
+    { fullName: 'Karen Joyce Joson', username: '@karenjoycrjoson', phone: '09123892012', address: '12 Everlasting St. Bulihan', dateRegistered: 'January 5, 2024', status: 'Active', avatar: defaultAvatar },
+    { fullName: 'Celmin Shane Quizon', username: '@clmnshn', phone: '09123098971', address: 'Malolos, Bulacan', dateRegistered: 'January 15, 2024', status: 'Active', avatar: defaultAvatar },
+    { fullName: 'Miguel Angelo Barruga', username: '@barrugs', phone: '09123098971', address: 'Malolos, Bulacan', dateRegistered: 'January 15, 2024', status: 'Active', avatar: defaultAvatar },
+    { fullName: 'Francis Harvey Soriano', username: '@harvey', phone: '09123098971', address: 'Malolos, Bulacan', dateRegistered: 'January 15, 2024', status: 'Active', avatar: defaultAvatar },
   ];
   const [filteredUsers, setFilteredUsers] = useState(users);
+  const [isNewUserModalOpen, setIsNewUserModalOpen] = useState(false);
+  const [searchNotFound, setSearchNotFound] = useState(false);
+  const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
+  const [isDeactivationModalOpen, setIsDeactivationModalOpen] = useState(false); 
 
   const toggleSidebar = () => {
     setSidebarMinimized(!sidebarMinimized);
@@ -89,14 +95,31 @@ const DashboardAdmin = () => {
   //filtering search
   const handleSearchClick = () => {
     setFilteredUsers(users.filter((user) =>
-      user.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.phone.includes(searchQuery) ||
-      user.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.dateRegistered.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.status.toLowerCase().includes(searchQuery.toLowerCase())
+      user.fullName.toLowerCase().includes(searchQuery.toLowerCase()) 
     ));
+    setSearchNotFound(filtered.length === 0); 
   };
+
+  const handleAddUser = (newUser) => {
+    setFilteredUsers([...filteredUsers, { ...newUser }]);
+  };
+
+  const handleUserDotsClick = (index) => {
+    setActiveDropdownIndex(activeDropdownIndex === index ? null : index);
+  };
+
+    // Function to handle deactivation modal open
+    const handleDeactivateUser = (index) => {
+      setActiveDropdownIndex(null); // Close dropdown when opening modal
+      setIsDeactivationModalOpen(true);
+    };
+  
+    // Function to confirm deactivation
+    const confirmDeactivation = () => {
+      // Perform deactivation logic here (e.g., update user status to 'Inactive', etc.)
+      console.log('User deactivated'); // Placeholder logic
+      setIsDeactivationModalOpen(false); // Close modal after deactivation
+    };
 
   return (
   <div className={`dashboard-container ${sidebarMinimized ? 'sidebar-minimized' : ''}`}>
@@ -231,7 +254,7 @@ const DashboardAdmin = () => {
               <img src={filterIcon} alt="Filter" />
             </button>
           </div>
-          <button className="new-user-button">+ New User</button>
+          <button className="new-user-button" onClick={() => setIsNewUserModalOpen(true)}>+ New User</button>
         </div>
         <div className="users-table-container">
         <table className="users-table">
@@ -255,7 +278,14 @@ const DashboardAdmin = () => {
                 </tr>
               </thead>
               <tbody>
-                 {filteredUsers.map((user, index) => (
+                {filteredUsers.length === 0 ? (
+                  <tr>
+                    <td colSpan="8" style={{ textAlign: 'center' }}>
+                      No users found.
+                    </td>
+                  </tr>
+                ) :
+                 (filteredUsers.map((user, index) => (
                   <tr key={index}>
                     <td>
                       <input
@@ -267,7 +297,7 @@ const DashboardAdmin = () => {
                     </td>
                     <td>
                       <div className="user-info">
-                        <img className="user-avatar" src={user.avatar} alt={`${user.fullName}'s avatar`} />
+                         <img className="user-avatar" src={user.avatar} alt={`${user.fullName}'s avatar`} />
                         <span>{user.fullName}</span>
                       </div>
                     </td>
@@ -275,18 +305,47 @@ const DashboardAdmin = () => {
                     <td>{user.phone}</td>
                     <td>{user.address}</td>
                     <td>{user.dateRegistered}</td>
-                    <td className="user-status">{user.status}</td>
-                    <td><img className="userDots" src={userDots} alt="dot icon" /></td>
+                    <td className={`user-status ${user.status.toLowerCase() === 'inactive' ? 'inactive' : ''}`}>
+                      {user.status}
+                    </td>
+                    <td>
+                        <div className="user-actions">
+                          <img
+                            src={userDots}
+                            alt="Actions"
+                            onClick={() => handleUserDotsClick(index)}
+                            className="userDots"
+                          />
+                          {activeDropdownIndex === index && (
+                            <div className="user-dropdown">
+                              <Link to={`/Users/${user.username}/Edit`}>Edit</Link>
+                              <Link to={`/Users/${user.username}/View Details`}>View Details</Link>
+                              <button onClick={() => handleDeactivateUser(index)}>Deactivate</button>
+                            </div>
+                          )}
+                        </div>
+                      </td>
                   </tr>
-                ))}
+                )))}
               </tbody>
             </table>
         </div>
       </div>
     </div>
-
+     {/* NewUserModal component */}
+    <NewUserModal
+      isOpen={isNewUserModalOpen}
+      onClose={() => setIsNewUserModalOpen(false)}
+      onAddUser={handleAddUser}
+    />
+    {/* DeactivationModal component */}
+    <DeactivationModal
+        isOpen={isDeactivationModalOpen}
+        onClose={() => setIsDeactivationModalOpen(false)}
+        onConfirm={confirmDeactivation}
+      />
   </div>
   );
 };
 
-export default DashboardAdmin;
+export default UsersAdmin;

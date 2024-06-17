@@ -1,6 +1,9 @@
-body{
-  margin: 0;
- }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+body {
+  font-family: "Poppins", sans-serif;
+}
  
  .dashboard-container{
    background-color: #EEF7FF;
@@ -477,6 +480,10 @@ body{
   color: rgb(1, 204, 1);
 }
 
+.user-status.inactive {
+  color: #999; 
+}
+
 .userDots{
   width: 27px;
 }
@@ -493,3 +500,51 @@ body{
   margin-right: 7px;
 }
 
+/* --- */
+
+
+.user-actions {
+  position: relative;
+}
+
+.user-dropdown {
+  position: absolute;
+  width: 170px;
+  right: 20px;
+  top: 14px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  z-index: 1000;
+  padding: 10px;
+}
+
+.user-dropdown a {
+  display: block;
+  padding: 7px;
+  margin-bottom: 4px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: background-color 1s, color 1s;
+}
+
+.user-dropdown button{
+  width: 100%;
+  text-align: start;
+  border: none;
+  color: #333;
+  border-radius: 7px;
+  font-weight: 600;
+  padding: 7px;
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
+  transition: background-color 1s, color 1s;
+}
+
+.user-dropdown a:hover,
+.user-dropdown button:hover{
+  background-color: #0174CF;
+  color: white;
+}

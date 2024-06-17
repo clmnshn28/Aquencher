@@ -34,17 +34,20 @@ const signup = () =>{
   // checking if password match and met the requirement
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    if (!isPasswordRequirementMet('Be 8-100 characters long') ||
+      !isPasswordRequirementMet('Contain at least one uppercase and one lowercase letter') ||
+      !isPasswordRequirementMet('Contain at least one number or special character')) {
+      setError('Password does not meet the requirements');
+      return;
+    }
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return; 
     }
 
-    if (!isPasswordRequirementMet('Be 8-100 characters long') ||
-        !isPasswordRequirementMet('Contain at least one uppercase and one lowercase letter') ||
-        !isPasswordRequirementMet('Contain at least one number or special character')) {
-      setError('Password does not meet the requirements');
-      return;
-    }
+  
+
     // Proceed with form submission
     setError(''); 
 
@@ -127,7 +130,7 @@ const signup = () =>{
               {error && <span className="error">{error}</span>}
             </div>
             <div className="password-instruction">
-              <p>Your password must include the following</p>
+              <p>Your password must include the following:</p>
               <ul>
                 <li>{getRequirementIcon('Be 8-100 characters long')} Be 8-100 characters long</li>
                 <li>{getRequirementIcon('Contain at least one uppercase and one lowercase letter')}Contain at least one uppercase and one lowercase letter</li>

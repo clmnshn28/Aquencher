@@ -23,7 +23,7 @@ import dropArrow from './Assets/dropArrow.png';
 import logoutDropdown from './Assets/logout-dropdown.png';
 import accountSettingDropdown from './Assets/account-dropdown.png';
 
-const DashboardAdmin = () => {
+const NotificationAdmin = () => {
 
   const [sidebarMinimized, setSidebarMinimized] = useState(false);
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -182,4 +182,4 @@ const DashboardAdmin = () => {
   );
 };
 
-export default DashboardAdmin;
+export default NotificationAdmin;
