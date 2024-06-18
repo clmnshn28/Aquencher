@@ -47,6 +47,17 @@ const deliveryTaskAdmin = () =>{
     { subject: 'System Update', description: 'System will be offline temporarily. Update is scheduled for tomorrow at 10:00 AM. Please plan your tasks accordingly.', time: '12 minutes ago', isNew: false },
   ]);
 
+  const [tasks, setTasks] = useState([
+    { date: '2024-07-02', time: '9:00 AM', customerName: 'Customer Name', transactionType: 'Transaction Type', gallonType: 'Gallon Type', quantity: 'Quantity', status: 'Completed' },
+    { date: '2024-07-02', time: '9:00 AM', customerName: 'Customer Name', transactionType: 'Transaction Type', gallonType: 'Gallon Type', quantity: 'Quantity', status: 'Completed' },
+    { date: '2024-07-02', time: '9:00 AM', customerName: 'Customer Name', transactionType: 'Transaction Type', gallonType: 'Gallon Type', quantity: 'Quantity', status: 'Completed' },
+    { date: '2024-07-02', time: '9:00 AM', customerName: 'Customer Name', transactionType: 'Transaction Type', gallonType: 'Gallon Type', quantity: 'Quantity', status: 'Completed' },
+    { date: '2024-07-02', time: '9:00 AM', customerName: 'Customer Name', transactionType: 'Transaction Type', gallonType: 'Gallon Type', quantity: 'Quantity', status: 'Complete' },
+    { date: '2024-07-02', time: '9:00 AM', customerName: 'Customer Name', transactionType: 'Transaction Type', gallonType: 'Gallon Type', quantity: 'Quantity', status: 'Complete' },
+    { date: '2024-07-02', time: '9:00 AM', customerName: 'Customer Name', transactionType: 'Transaction Type', gallonType: 'Gallon Type', quantity: 'Quantity', status: 'Complete' },
+    { date: '2024-07-02', time: '9:00 AM', customerName: 'Customer Name', transactionType: 'Transaction Type', gallonType: 'Gallon Type', quantity: 'Quantity', status: 'Complete' },
+]);
+
 
   const toggleSidebar = () => {
     setSidebarMinimized(!sidebarMinimized);
@@ -65,6 +76,7 @@ const deliveryTaskAdmin = () =>{
       i === index ? { ...notification, isNew: false } : notification
     ));
   };
+
 
   return (
 
@@ -195,7 +207,48 @@ const deliveryTaskAdmin = () =>{
       </ul>
     </div>
     <div className={`dashboard-content ${sidebarMinimized ? 'content-minimized' : ''}`}>
-  
+      <div className="delivery-header">
+        <h2 className="delivery-header-text">Task</h2>
+        <Link to="/Delivery/Task"  className='delivery-queue-link'>
+          <p className="delivery-queue-text">Delivery Queue</p>
+        </Link>
+        <Link to="/Delivery/Requests"  className='delivery-request-link'>
+        <p className="delivery-request-text">Requests</p>
+        </Link>
+      </div>
+      <div className="queue-container">
+        <table className="queue-table">
+          <thead className="queue-table-header">
+            <tr>
+              <th>Date/Time</th>
+              <th>Customer Name</th>
+              <th>Transaction Type</th>
+              <th>Gallon Type</th>
+              <th>Quantity</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tasks.map((task, index) => (
+              <tr key={index}>
+                <td className='queue-date-time'>
+                  <div>{task.time}</div>
+                  <div>{task.date}</div>
+                </td>
+                <td>{task.customerName}</td>
+                <td>{task.transactionType}</td>
+                <td>{task.gallonType}</td>
+                <td>{task.quantity}</td>
+                <td>
+                  <div className={task.status === 'Completed' ? 'status-completed' : 'status-complete'}>
+                    {task.status}
+                  </div> 
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
 
   </div>

@@ -1,8 +1,6 @@
-import "./Css/usersAdmin.css"
+import "./Css/transactionAdmin.css"
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import NewUserModal from './newUserModal'; 
-import DeactivationModal from './deactivationModal';
 
 import loginLogo from './Assets/loginLogo.png';
 import notificationClose from './Assets/notificationClose.png';
@@ -10,10 +8,11 @@ import defaultAvatar from './Assets/default-avatar.jpg';
 import dashboardIconOpen from './Assets/dashboard-open.png';
 import dashboardIconClose from './Assets/dashboard.png';
 import notificationIconClose from './Assets/notification.png';
-import usersIcon from './Assets/users.png';
+import usersIconClose from './Assets/users.png';
 import usersIconOpen from './Assets/users-open.png';
 import deliveryIconClose from './Assets/delivery.png';
 import transactionIconClose from './Assets/transactions.png';
+import transactionIconOpen from './Assets/transactions-open.png';
 import inventoryIconClose from './Assets/inventory.png';
 import announcementsIconClose from './Assets/announcement.png';
 import concernsIconClose from './Assets/concerns.png';
@@ -31,7 +30,7 @@ import filterIcon from './Assets/filter-icon.png';
 import searchBlackIcon from './Assets/black-search-icon.png';
 import userDots from './Assets/user-dots.png';
 
-const UsersAdmin = () => {
+const TransactionAdmin = () => {
 
   const [sidebarMinimized, setSidebarMinimized] = useState(false);
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -42,20 +41,17 @@ const UsersAdmin = () => {
     { subject: 'Borrow Request', description: 'John Smith requested to borrow 2 gallons of Po\'s Purified Dispenser Bottle Refill 18.9L', time: '12 minutes ago', isNew: false },
     { subject: 'System Update', description: 'System will be offline temporarily. Update is scheduled for tomorrow at 10:00 AM. Please plan your tasks accordingly.', time: '12 minutes ago', isNew: false },
   ]);
-  const [selectedUsers, setSelectedUsers] = useState([]);
-  const [selectAll, setSelectAll] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const users = [
-    { fullName: 'Karen Joyce Joson', username: '@karenjoycrjoson', phone: '09123892012', address: '12 Everlasting St. Bulihan', dateRegistered: 'January 5, 2024', status: 'Active', avatar: defaultAvatar },
-    { fullName: 'Celmin Shane Quizon', username: '@clmnshn', phone: '09123098971', address: 'Malolos, Bulacan', dateRegistered: 'January 15, 2024', status: 'Active', avatar: defaultAvatar },
-    { fullName: 'Miguel Angelo Barruga', username: '@barrugs', phone: '09123098971', address: 'Malolos, Bulacan', dateRegistered: 'January 15, 2024', status: 'Active', avatar: defaultAvatar },
-    { fullName: 'Francis Harvey Soriano', username: '@harvey', phone: '09123098971', address: 'Malolos, Bulacan', dateRegistered: 'January 15, 2024', status: 'Active', avatar: defaultAvatar },
+
+  const transactionLogs = [
+    { avatar: defaultAvatar, fullName: 'Karen Joyce Joson', transactionType: 'Sale', gallonType: 'Purified Blue Slim Gallon', quantity: '3 gallons', status: 'Complete', date: '2024-01-05', time: '10:30 AM'  },
+    { avatar: defaultAvatar, fullName: 'Celmin Shane Quizon', transactionType: 'Purchase', gallonType: 'Dispenser Bottle Refill', quantity: '2 gallons', status: 'Pending', date: '2024-01-15', time: '11:45 AM' },
+    { avatar: defaultAvatar, fullName: 'Miguel Angelo Barruga', transactionType: 'Sale', gallonType: 'Purified Blue Slim Gallon', quantity: '1 gallon', status: 'Complete', date: '2024-01-15', time: '02:20 PM' },
+    { avatar: defaultAvatar, fullName: 'Francis Harvey Soriano', transactionType: 'Purchase', gallonType: 'Purified Blue Slim Gallon', quantity: '5 gallons', status: 'Queue', date: '2024-01-20', time: '09:00 AM' },
   ];
-  const [filteredUsers, setFilteredUsers] = useState(users);
-  const [isNewUserModalOpen, setIsNewUserModalOpen] = useState(false);
+
+  const [filteredUsers, setFilteredUsers] = useState(transactionLogs);
   const [searchNotFound, setSearchNotFound] = useState(false);
-  const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
-  const [isDeactivationModalOpen, setIsDeactivationModalOpen] = useState(false); 
 
   const toggleSidebar = () => {
     setSidebarMinimized(!sidebarMinimized);
@@ -75,51 +71,15 @@ const UsersAdmin = () => {
     ));
   };
 
-  const handleSelectAll = () => {
-    setSelectAll(!selectAll);
-    if (!selectAll) {
-      setSelectedUsers(users.map((_, index) => index));
-    } else {
-      setSelectedUsers([]);
-    }
-  };
-  
-  const handleCheckboxChange = (index) => {
-    if (selectedUsers.includes(index)) {
-      setSelectedUsers(selectedUsers.filter((i) => i !== index));
-    } else {
-      setSelectedUsers([...selectedUsers, index]);
-    }
-  };
 
   //filtering search
   const handleSearchClick = () => {
-    setFilteredUsers(users.filter((user) =>
-      user.fullName.toLowerCase().includes(searchQuery.toLowerCase()) 
+    setFilteredUsers(transactionLogs.filter((log) =>
+      log.fullName.toLowerCase().includes(searchQuery.toLowerCase()) 
     ));
     setSearchNotFound(filtered.length === 0); 
   };
 
-  const handleAddUser = (newUser) => {
-    setFilteredUsers([...filteredUsers, { ...newUser }]);
-  };
-
-  const handleUserDotsClick = (index) => {
-    setActiveDropdownIndex(activeDropdownIndex === index ? null : index);
-  };
-
-    // Function to handle deactivation modal open
-    const handleDeactivateUser = (index) => {
-      setActiveDropdownIndex(null); // Close dropdown when opening modal
-      setIsDeactivationModalOpen(true);
-    };
-  
-    // Function to confirm deactivation
-    const confirmDeactivation = () => {
-      // Perform deactivation logic here (e.g., update user status to 'Inactive', etc.)
-      console.log('User deactivated'); // Placeholder logic
-      setIsDeactivationModalOpen(false); // Close modal after deactivation
-    };
 
   return (
   <div className={`dashboard-container ${sidebarMinimized ? 'sidebar-minimized' : ''}`}>
@@ -186,9 +146,9 @@ const UsersAdmin = () => {
             <span className="sidebar-text">Notifications</span>
           </li>
         </Link>
-        <Link to="/Users" className='link-sidebar highlighted'>
+        <Link to="/Users" className='link-sidebar '>
           <li>
-            <img className="sidebaricon" src={usersIconOpen} alt="Users" />
+            <img className="sidebaricon" src={usersIconClose} alt="Users" />
             <span className="sidebar-text">Users</span>
           </li>
         </Link>
@@ -198,9 +158,9 @@ const UsersAdmin = () => {
             <span className="sidebar-text">Delivery</span>
           </li>
         </Link>
-        <Link to="/Transactions" className='link-sidebar'>
+        <Link to="/Transactions" className='link-sidebar highlighted'>
           <li>
-            <img className="sidebaricon" src={transactionIconClose} alt="Transactions" />
+            <img className="sidebaricon" src={transactionIconOpen} alt="Transactions" />
             <span className="sidebar-text">Transactions</span>
           </li>
         </Link>
@@ -232,9 +192,8 @@ const UsersAdmin = () => {
     </div>
     <div className={`dashboard-content ${sidebarMinimized ? 'content-minimized' : ''}`}>
       <div className="users-section">
-        <div className="users-header">
-          <h2 className="users-header-text">Users</h2>
-          <p className="customer-name-text">Customers</p>
+        <div className="transactions-header">
+          <h2 className="transactions-header-text">Transactions</h2>
         </div>
         <div className="user-controls">
           <div className="search-bar-container">
@@ -254,98 +213,53 @@ const UsersAdmin = () => {
               <img src={filterIcon} alt="Filter" />
             </button>
           </div>
-          <button className="new-user-button" onClick={() => setIsNewUserModalOpen(true)}>+ New User</button>
         </div>
         <div className="users-table-container">
-        <table className="users-table">
-              <thead className="users-table-header">
+        <table className="transactions-table">
+              <thead className="transactions-table-header">
                 <tr>
-                  <th>
-                    <input
-                      className="custom-checkbox"
-                      type="checkbox"
-                      checked={selectAll}
-                      onChange={handleSelectAll}
-                    />
-                  </th>
-                  <th>Full Name</th>
-                  <th>Username</th>
-                  <th>Phone</th>
-                  <th>Address</th>
-                  <th>Date Registered</th>
+                  <th>Customer Name</th>
+                  <th>Transaction Type</th>
+                  <th>Gallon Type</th>
+                  <th>Quantity</th>
                   <th>Status</th>
-                  <th></th>
+                  <th>Date/Time</th>
                 </tr>
               </thead>
               <tbody>
-                {filteredUsers.length === 0 ? (
+              {filteredUsers.length === 0 ? (
                   <tr>
                     <td colSpan="8" style={{ textAlign: 'center' }}>
-                      No users found.
+                      No transaction found.
                     </td>
                   </tr>
                 ) :
-                 (filteredUsers.map((user, index) => (
-                  <tr key={index}>
-                    <td>
-                      <input
-                        className="custom-checkbox"
-                        type="checkbox"
-                         checked={selectedUsers.includes(index)}
-                        onChange={() => handleCheckboxChange(index)}
-                      />
-                    </td>
-                    <td>
-                      <div className="user-info">
-                        <img className="user-avatar" src={user.avatar} alt={`${user.fullName}'s avatar`} />
-                        <span>{user.fullName}</span>
-                      </div>
-                    </td>
-                    <td>{user.username}</td>
-                    <td>{user.phone}</td>
-                    <td>{user.address}</td>
-                    <td>{user.dateRegistered}</td>
-                    <td className={`user-status ${user.status.toLowerCase() === 'inactive' ? 'inactive' : ''}`}>
-                      {user.status}
-                    </td>
-                    <td>
-                        <div className="user-actions">
-                          <img
-                            src={userDots}
-                            alt="Actions"
-                            onClick={() => handleUserDotsClick(index)}
-                            className="userDots"
-                          />
-                          {activeDropdownIndex === index && (
-                            <div className="user-dropdown">
-                              <Link to={`/Users/${user.username}/Edit`}>Edit</Link>
-                              <Link to={`/Users/${user.username}/View Details`}>View Details</Link>
-                              <button onClick={() => handleDeactivateUser(index)}>Deactivate</button>
-                            </div>
-                          )}
+                 ( filteredUsers.map((log, index) => (
+                    <tr key={index}>
+                      <td className="customer-name">
+                        <div className="user-info">
+                          <img className="user-avatar" src={log.avatar} alt={`${log.fullName}'s avatar`} />
+                          {log.fullName}
                         </div>
                       </td>
-                  </tr>
-                )))}
+                      <td>{log.transactionType}</td>
+                      <td>{log.gallonType}</td>
+                      <td>{log.quantity}</td>
+                      <td>{log.status}</td>
+                      <td className='transaction-date-time'>
+                        <div>{log.date}</div>
+                        <div>{log.time}</div>
+                      </td>
+                    </tr>
+                  )))}
               </tbody>
             </table>
         </div>
       </div>
     </div>
-     {/* NewUserModal component */}
-    <NewUserModal
-      isOpen={isNewUserModalOpen}
-      onClose={() => setIsNewUserModalOpen(false)}
-      onAddUser={handleAddUser}
-    />
-    {/* DeactivationModal component */}
-    <DeactivationModal
-        isOpen={isDeactivationModalOpen}
-        onClose={() => setIsDeactivationModalOpen(false)}
-        onConfirm={confirmDeactivation}
-      />
+
   </div>
   );
 };
 
-export default UsersAdmin;
+export default TransactionAdmin;
