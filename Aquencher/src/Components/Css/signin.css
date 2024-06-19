@@ -61,7 +61,7 @@ body {
   margin-bottom: 20px;
 }
 
-form {
+.signin-form {
   display: flex;
   flex-direction: column;
   width: 73%;
@@ -188,6 +188,7 @@ form {
   text-align: center;
   font-size: 14px;
   margin-top: 20px;
+  margin-bottom: 34px;
   font-weight: 500;
   color:  #565252;
 }

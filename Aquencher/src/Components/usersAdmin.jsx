@@ -231,7 +231,6 @@ const UsersAdmin = () => {
       </ul>
     </div>
     <div className={`dashboard-content ${sidebarMinimized ? 'content-minimized' : ''}`}>
-      <div className="users-section">
         <div className="users-header">
           <h2 className="users-header-text">Users</h2>
           <p className="customer-name-text">Customers</p>
@@ -330,7 +329,7 @@ const UsersAdmin = () => {
               </tbody>
             </table>
         </div>
-      </div>
+    
     </div>
      {/* NewUserModal component */}
     <NewUserModal

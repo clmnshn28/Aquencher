@@ -48,7 +48,7 @@ const signin = () =>{
           <div className="input-container">
             <h1 className='login'>Login</h1>
             
-            <form onSubmit={handleSubmit} action="" method="post">
+            <form onSubmit={handleSubmit} action="" method="post" className='signin-form'>
               <div className="input-field">
                 <input
                   type="text"

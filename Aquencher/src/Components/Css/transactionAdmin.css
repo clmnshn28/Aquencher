@@ -48,10 +48,10 @@
   color: #999; 
 }
 
-.user-info {
+.transaction-info {
   display: flex;
   align-items: center;
-  justify-content:center; 
+  justify-content: center;
 }
 
 .user-avatar{

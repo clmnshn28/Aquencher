@@ -8,6 +8,9 @@ import UsersAdmin from './Components/usersAdmin';
 import DeliveryTaskAdmin from './Components/deliveryTaskAdmin';
 // import DeliveryRequestAdmin from './Components/deliveryRequestAdmin';
 import TransactionAdmin from './Components/transactionAdmin';
+import InventoryAdmin from './Components/inventoryAdmin';
+import AnnouncementAdmin from './Components/announcementAdmin';
+import CreateAnnouncement from './Components/createAnnouncementAdmin';
 
 const App = () => {
   return (
@@ -20,6 +23,9 @@ const App = () => {
         <Route path='/Users' element={<UsersAdmin />}/>
         <Route path='/Delivery/Task' element={<DeliveryTaskAdmin/>}/>
         <Route path='/Transactions' element={<TransactionAdmin/>}/>
+        <Route path='/Inventory' element={<InventoryAdmin/>}/>
+        <Route path='/Announcements' element={<AnnouncementAdmin/>}/>
+        <Route path='/Announcements/CreateAnnouncement' element={<CreateAnnouncement/>}/>
       </Routes>
     </Router>
   );

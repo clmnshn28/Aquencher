@@ -74,10 +74,10 @@ const signup = () =>{
   return (
     <div className="signup-wrapper">
       <div className="signup-container">
-      <h1>Create Account</h1>
+      <h1 className='signup-header'>Create Account</h1>
       <div className="signup-box">
         <div className="input-container">    
-          <form onSubmit={handleSubmit} action="" method="post">
+          <form onSubmit={handleSubmit} action="" method="post" className='signup-form'>
             <div className="input-field">
               <input
                 type="text"

@@ -1,4 +1,4 @@
-import "./Css/transactionAdmin.css"
+import "./Css/inventoryAdmin.css"
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -14,6 +14,7 @@ import deliveryIconClose from './Assets/delivery.png';
 import transactionIconClose from './Assets/transactions.png';
 import transactionIconOpen from './Assets/transactions-open.png';
 import inventoryIconClose from './Assets/inventory.png';
+import inventoryIconOpen from './Assets/inventory-open.png';
 import announcementsIconClose from './Assets/announcement.png';
 import concernsIconClose from './Assets/concerns.png';
 import accountIconClose from './Assets/account.png';
@@ -28,9 +29,10 @@ import accountSettingDropdown from './Assets/account-dropdown.png';
 import searchIcon from './Assets/search-icon.png';
 import filterIcon from './Assets/filter-icon.png';
 import searchBlackIcon from './Assets/black-search-icon.png';
-import userDots from './Assets/user-dots.png';
+import inventoryDots from './Assets/user-dots.png';
 
-const TransactionAdmin = () => {
+
+const InventoryAdmin = () =>{
 
   const [sidebarMinimized, setSidebarMinimized] = useState(false);
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -41,17 +43,6 @@ const TransactionAdmin = () => {
     { subject: 'Borrow Request', description: 'John Smith requested to borrow 2 gallons of Po\'s Purified Dispenser Bottle Refill 18.9L', time: '12 minutes ago', isNew: false },
     { subject: 'System Update', description: 'System will be offline temporarily. Update is scheduled for tomorrow at 10:00 AM. Please plan your tasks accordingly.', time: '12 minutes ago', isNew: false },
   ]);
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const transactionLogs = [
-    { avatar: defaultAvatar, fullName: 'Karen Joyce Joson', transactionType: 'Sale', gallonType: 'Purified Blue Slim Gallon', quantity: '3 gallons', status: 'Complete', date: '2024-01-05', time: '10:30 AM'  },
-    { avatar: defaultAvatar, fullName: 'Celmin Shane Quizon', transactionType: 'Purchase', gallonType: 'Dispenser Bottle Refill', quantity: '2 gallons', status: 'Pending', date: '2024-01-15', time: '11:45 AM' },
-    { avatar: defaultAvatar, fullName: 'Miguel Angelo Barruga', transactionType: 'Sale', gallonType: 'Purified Blue Slim Gallon', quantity: '1 gallon', status: 'Complete', date: '2024-01-15', time: '02:20 PM' },
-    { avatar: defaultAvatar, fullName: 'Francis Harvey Soriano', transactionType: 'Purchase', gallonType: 'Purified Blue Slim Gallon', quantity: '5 gallons', status: 'Queue', date: '2024-01-20', time: '09:00 AM' },
-  ];
-
-  const [filteredUsers, setFilteredUsers] = useState(transactionLogs);
-  const [searchNotFound, setSearchNotFound] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarMinimized(!sidebarMinimized);
@@ -70,16 +61,6 @@ const TransactionAdmin = () => {
       i === index ? { ...notification, isNew: false } : notification
     ));
   };
-
-
-  //filtering search
-  const handleSearchClick = () => {
-    setFilteredUsers(transactionLogs.filter((log) =>
-      log.fullName.toLowerCase().includes(searchQuery.toLowerCase()) 
-    ));
-    setSearchNotFound(filtered.length === 0); 
-  };
-
 
   return (
   <div className={`dashboard-container ${sidebarMinimized ? 'sidebar-minimized' : ''}`}>
@@ -158,15 +139,15 @@ const TransactionAdmin = () => {
             <span className="sidebar-text">Delivery</span>
           </li>
         </Link>
-        <Link to="/Transactions" className='link-sidebar highlighted'>
+        <Link to="/Transactions" className='link-sidebar'>
           <li>
-            <img className="sidebaricon" src={transactionIconOpen} alt="Transactions" />
+            <img className="sidebaricon" src={transactionIconClose} alt="Transactions" />
             <span className="sidebar-text">Transactions</span>
           </li>
         </Link>
-        <Link to="/Inventory" className='link-sidebar'>
+        <Link to="/Inventory" className='link-sidebar highlighted'>
           <li>
-            <img className="sidebaricon" src={inventoryIconClose} alt="Inventory" />
+            <img className="sidebaricon" src={inventoryIconOpen} alt="Inventory" />
             <span className="sidebar-text">Inventory</span>
           </li>
         </Link>
@@ -191,73 +172,97 @@ const TransactionAdmin = () => {
       </ul>
     </div>
     <div className={`dashboard-content ${sidebarMinimized ? 'content-minimized' : ''}`}>
-      <div className="transactions-header">
-        <h2 className="transactions-header-text">Transactions</h2>
-      </div>
-      <div className="user-controls">
-        <div className="search-bar-container">
-          <div className="search-bar">
-            <input 
-              type="text" 
-              placeholder="Search" 
-              value={searchQuery} 
-              onChange={(e) => setSearchQuery(e.target.value)} 
-            />
-            <img src={searchBlackIcon} alt="Search" />
+      <div className="inventory-header">
+        <h2 className="inventory-header-text">Inventory</h2>
+        <div className="total-gallon-container">
+          {/* slim */}
+          <div className="slim-gallon-container">
+            <div className="final-total-slim">
+              <p className="final-total-slim-text">Total Slim Gallon</p>
+              <p className="final-total-slim-value">0</p>
+            </div>
+
+            <div className="slim-content">
+              <div className="final-total-container">
+                <p className="final-total-text">Total Available</p>
+                <p className="final-total-value">0</p>
+              </div>
+              <div className="final-total-container">
+                <p className="final-total-text">Total Refilled</p>
+                <p className="final-total-value">0</p>
+              </div>
+              <div className="final-total-container">
+                <p className="final-total-text">Total Borrowed</p>
+                <p className="final-total-value">0</p>
+              </div>
+            </div>
           </div>
-          <button className="search-button" onClick={handleSearchClick}>
-            <img src={searchIcon} alt="Search Icon" />
-          </button>
-          <button className="filter-button">
-            <img src={filterIcon} alt="Filter" />
-          </button>
+          {/* round */}
+          <div className="round-gallon-container">
+            <div className="final-total-round">
+              <p className="final-total-round-text">Total Round Gallon</p>
+              <p className="final-total-round-value">0</p>
+            </div>
+
+            <div className="round-content">
+              <div className="final-total-container">
+                <p className="final-total-text">Total Available</p>
+                <p className="final-total-value">0</p>
+              </div>
+              <div className="final-total-container">
+                <p className="final-total-text">Total Refilled</p>
+                <p className="final-total-value">0</p>
+              </div>
+              <div className="final-total-container">
+                <p className="final-total-text">Total Borrowed</p>
+                <p className="final-total-value">0</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="users-table-container">
-        <table className="transactions-table">
-          <thead className="transactions-table-header">
+
+      <div className="inventory-table-container">
+        <table className="inventory-table">
+          <thead className="inventory-table-header">
             <tr>
-              <th>Customer Name</th>
-              <th>Transaction Type</th>
               <th>Gallon Type</th>
-              <th>Quantity</th>
-              <th>Status</th>
-              <th>Date/Time</th>
+              <th>Quantity in Stock</th>
+              <th>Price per Gallon</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-          {filteredUsers.length === 0 ? (
-              <tr>
-                <td colSpan="8" style={{ textAlign: 'center' }}>
-                  No transaction found.
-                </td>
-              </tr>
-            ) :
-              ( filteredUsers.map((log, index) => (
-                <tr key={index}>
-                  <td className="customer-name">
-                    <div className="transaction-info">
-                      <img className="user-avatar" src={log.avatar} alt={`${log.fullName}'s avatar`} />
-                      {log.fullName}
-                    </div>
-                  </td>
-                  <td>{log.transactionType}</td>
-                  <td>{log.gallonType}</td>
-                  <td>{log.quantity}</td>
-                  <td>{log.status}</td>
-                  <td className='transaction-date-time'>
-                    <div>{log.date}</div>
-                    <div>{log.time}</div>
-                  </td>
-                </tr>
-              )))}
+            <tr>
+              <td className="name-gallon">Po's Purified Blue Slim Gallon with Faucet Refill (20L/5gal)</td>
+              <td>150</td>
+              <td>₱25.00</td>
+              <td>
+                <img 
+                src={inventoryDots} 
+                alt="actions"  
+                className="inventoryDots"/>
+              </td>
+            </tr>
+            <tr>
+              <td className="name-gallon">Po’s Purified Round Dispenser Bottle Refill 18.9L</td>
+              <td>150</td>
+              <td>₱25.00</td>
+              <td>
+                <img 
+                src={inventoryDots} 
+                alt="actions"  
+                className="inventoryDots"/>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
-    </div>
 
+    </div>
   </div>
   );
-};
+}
 
-export default TransactionAdmin;
+
+export default InventoryAdmin;

@@ -26,7 +26,7 @@ body {
   margin: 40px 0;
 }
 
-h1{
+.signup-header{
   text-align: center;
   font-weight: bold;
   color: white;
@@ -56,7 +56,7 @@ h1{
 
 /* --- */
 
-form {
+.signup-form {
   display: flex;
   flex-direction: column;
   width: 73%;
