@@ -11,6 +11,8 @@ import TransactionAdmin from './Components/transactionAdmin';
 import InventoryAdmin from './Components/inventoryAdmin';
 import AnnouncementAdmin from './Components/announcementAdmin';
 import CreateAnnouncement from './Components/createAnnouncementAdmin';
+import ConcernAdmin from './Components/concernsAdmin';
+import AccountAdmin from './Components/accountAdmin';
 
 const App = () => {
   return (
@@ -26,6 +28,8 @@ const App = () => {
         <Route path='/Inventory' element={<InventoryAdmin/>}/>
         <Route path='/Announcements' element={<AnnouncementAdmin/>}/>
         <Route path='/Announcements/CreateAnnouncement' element={<CreateAnnouncement/>}/>
+        <Route path='/Concerns' element={<ConcernAdmin/>}/>
+        <Route path='/Account/Settings' element={<AccountAdmin/>}/>
       </Routes>
     </Router>
   );

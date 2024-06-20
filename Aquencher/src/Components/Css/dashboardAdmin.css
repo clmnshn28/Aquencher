@@ -325,6 +325,14 @@ body {
   margin-left: 10px;
 }
 
+.account-settings-icon{
+  width: 20px;
+}
+
+.account-settings-text{
+  font-size: 13px;
+}
+
 /* toggle sidebar */
 
 .sidebar-toggle-button{

@@ -155,7 +155,7 @@ const NotificationAdmin = () => {
             <span className="sidebar-text">Concerns</span>
           </li>
         </Link>
-        <Link to="/Account" className='link-sidebar'>
+        <Link to="/Account/Settings" className='link-sidebar'>
           <li>
             <img className="sidebaricon" src={accountIcon} alt="Account" />
             <span className="sidebar-text">Account</span>

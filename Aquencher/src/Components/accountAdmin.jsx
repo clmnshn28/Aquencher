@@ -1,4 +1,4 @@
-import "./Css/createAnnouncementAdmin.css"
+import "./Css/concernsAdmin.css"
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -18,7 +18,10 @@ import inventoryIconOpen from './Assets/inventory-open.png';
 import announcementsIconClose from './Assets/announcement.png';
 import announcementIconOpen from './Assets/announcement-open.png';
 import concernsIconClose from './Assets/concerns.png';
+import concernIconOpen from './Assets/concerns-open.png';
 import accountIconClose from './Assets/account.png';
+import accountIconOpen from './Assets/account-open.png';
+
 import adminLogo from './Assets/AdminLogo.png';
 import sidebarButton from './Assets/sidebar-button.png';
 import sidebarButtonOpen from './Assets/sidebar-button-open.png';
@@ -32,9 +35,11 @@ import filterIcon from './Assets/filter-icon.png';
 import searchBlackIcon from './Assets/black-search-icon.png';
 import inventoryDots from './Assets/user-dots.png';
 import createAnnouncement from './Assets/create-announcement.png';
+import concernFilterOpen from './Assets/concern-filter-open.png';
+import concernFilterClose from './Assets/concern-filter-close.png';
+import accountSettingIconOpen from './Assets/settings-open.png';
 
-
-const createAnnouncementAdmin = () =>{
+const AccountAdmin = () =>{
 
   const [sidebarMinimized, setSidebarMinimized] = useState(false);
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -45,7 +50,7 @@ const createAnnouncementAdmin = () =>{
     { subject: 'Borrow Request', description: 'John Smith requested to borrow 2 gallons of Po\'s Purified Dispenser Bottle Refill 18.9L', time: '12 minutes ago', isNew: false },
     { subject: 'System Update', description: 'System will be offline temporarily. Update is scheduled for tomorrow at 10:00 AM. Please plan your tasks accordingly.', time: '12 minutes ago', isNew: false },
   ]);
-
+ 
   const toggleSidebar = () => {
     setSidebarMinimized(!sidebarMinimized);
   };
@@ -64,14 +69,8 @@ const createAnnouncementAdmin = () =>{
     ));
   };
 
-  const createhandleSubmit = (event) => {
-    event.preventDefault();
-   
-    console.log('Form submitted!');
-  };
-
   return (
-    <div className={`bgannouncement-container ${sidebarMinimized ? 'sidebar-minimized' : ''}`}>
+    <div className={`dashboard-container ${sidebarMinimized ? 'sidebar-minimized' : ''}`}>
       <div className="dashboard-header">
         <img className="Aquencher-Logo" src={loginLogo} alt="Aquencher Logo" />
         <div className="admin-profile">
@@ -159,9 +158,9 @@ const createAnnouncementAdmin = () =>{
               <span className="sidebar-text">Inventory</span>
             </li>
           </Link>
-          <Link to="/Announcements" className='link-sidebar highlighted'>
+          <Link to="/Announcements" className='link-sidebar'>
             <li>
-              <img className="sidebaricon" src={announcementIconOpen} alt="Announcements" />
+              <img className="sidebaricon" src={announcementsIconClose} alt="Announcements" />
               <span className="sidebar-text">Announcements</span>
             </li>
           </Link>
@@ -171,39 +170,32 @@ const createAnnouncementAdmin = () =>{
               <span className="sidebar-text">Concerns</span>
             </li>
           </Link>
-          <Link to="/Account/Settings" className='link-sidebar'>
+          <Link to="/Account/Settings" className='link-sidebar highlighted sub-delivery'>
             <li>
-              <img className="sidebaricon" src={accountIconClose} alt="Account" />
+              <img className="sidebaricon" src={accountIconOpen} alt="Account" />
               <span className="sidebar-text">Account</span>
             </li>
           </Link>
+          <ul>
+            <Link to="/Account/Settings" className='link-sub-sidebar'>
+              <li className='sub-sidebar selected'>
+                <div className="task-container sub-highlighted">
+                  <img className="sub-sidebaricon account-settings-icon" src={accountSettingIconOpen} alt="Tasks" />
+                  <span className="sidebar-text account-settings-text">Account Settings</span>
+                </div>
+              </li>
+            </Link>
+          </ul>
         </ul>
       </div>
       <div className={`dashboard-content ${sidebarMinimized ? 'content-minimized' : ''}`}>
-        <div className="create-announcement-container">
-          <h1  className="create-announcement-header">Create Announcement</h1>
-          <form onSubmit={createhandleSubmit} className="create-form-submit" >
-            <div className="create-announcement-form-container">
-              <div className="create-announcement-form-group">
-                <label htmlFor="announcementTitle">Announcement Title</label>
-                <input type="text" id="announcementTitle" name="announcementTitle" required/>
-              </div>
-              <div className="create-announcement-form-group summary-group">
-                <label htmlFor="summary">Summary</label>
-                <textarea id="summary" name="summary" placeholder="Write your announcement here..." required></textarea>
-              </div>
-            </div>
-            <div className="create-announcement-form-actions">
-              <Link to="/announcements" className="btn btn-cancel">Cancel</Link>
-              <button type="submit" className="btn btn-publish">Publish</button>
-            </div>
-          </form>  
+        <div className="concerns-container">
+          
         </div>
-   
 
       </div>
     </div>
   );
 }
 
-export default createAnnouncementAdmin;
+export default AccountAdmin;
