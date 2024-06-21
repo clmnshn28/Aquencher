@@ -1,2 +1,10 @@
 
 /* account content */
+
+.account-settings-container{
+  background-color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.07);
+  margin:0 40px 20px 10px;
+  border-radius: 5px;
+  padding: 5px 0px;
+}

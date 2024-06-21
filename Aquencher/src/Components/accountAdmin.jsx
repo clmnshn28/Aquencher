@@ -1,4 +1,4 @@
-import "./Css/concernsAdmin.css"
+import "./Css/accountAdmin.css"
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -189,7 +189,7 @@ const AccountAdmin = () =>{
         </ul>
       </div>
       <div className={`dashboard-content ${sidebarMinimized ? 'content-minimized' : ''}`}>
-        <div className="concerns-container">
+        <div className="account-settings-container">
           
         </div>
 
