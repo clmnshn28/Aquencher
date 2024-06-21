@@ -72,6 +72,7 @@ body {
 .notification-title-header{
   color: #0174CF;
   font-size: 20px;
+  font-weight: bold;
   margin: 0;
  }
 
@@ -79,6 +80,7 @@ body {
   margin: 0;
   margin-top: 5px;
   font-size: 15px;
+  font-weight: bold;
  }
  
  .notification-details-header {

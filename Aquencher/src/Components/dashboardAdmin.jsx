@@ -64,10 +64,10 @@ const DashboardAdmin = () => {
         {notificationsVisible && (
         <div className="notifications-view">
           <div className="notifications-header">
-            <h2 className="notification-title-header">Notifications</h2>
+            <p className="notification-title-header">Notifications</p>
             <Link to="/Notifications" className="see-all-button">See all</Link>
           </div>
-          <h3 className="notification-earlier-header">Earlier</h3>
+          <p className="notification-earlier-header">Earlier</p>
           {notifications.map((notification, index) => (
             <div key={index} className={`notification-details-header ${notification.isNew ? 'new-notification' : ''}`} onClick={() => handleNotificationClick(index)}>
               <p className="notification-subject-header">{notification.subject}</p>

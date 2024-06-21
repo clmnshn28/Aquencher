@@ -48,7 +48,7 @@
     <li>Identify daily operations of PO’s Purified Drinking Water & Refilling Hub regarding management of refilled and borrowed gallons.</li>
     <li>Integrate a WDMS web application with the following features for users:
         <ul>
-            <li>Account creation, modification, deletion</li>
+            <li>Account creation, modification.</li>
             <li>Pickup request and gallon borrowing/returning</li>
             <li>Announcement and activity notifications</li>
             <li>Customer feedback and suggestions</li>

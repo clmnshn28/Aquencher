@@ -38,6 +38,7 @@ import createAnnouncement from './Assets/create-announcement.png';
 import concernFilterOpen from './Assets/concern-filter-open.png';
 import concernFilterClose from './Assets/concern-filter-close.png';
 import accountSettingIconOpen from './Assets/settings-open.png';
+import editProfile from './Assets/edit-profile.png';
 
 const AccountAdmin = () =>{
 
@@ -70,7 +71,7 @@ const AccountAdmin = () =>{
   };
 
   return (
-    <div className={`dashboard-container ${sidebarMinimized ? 'sidebar-minimized' : ''}`}>
+    <div className={`bgaccount-container ${sidebarMinimized ? 'sidebar-minimized' : ''}`}>
       <div className="dashboard-header">
         <img className="Aquencher-Logo" src={loginLogo} alt="Aquencher Logo" />
         <div className="admin-profile">
@@ -78,10 +79,10 @@ const AccountAdmin = () =>{
           {notificationsVisible && (
           <div className="notifications-view">
             <div className="notifications-header">
-              <h2 className="notification-title-header">Notifications</h2>
+              <p className="notification-title-header">Notifications</p>
               <Link to="/notifications" className="see-all-button">See all</Link>
             </div>
-            <h3 className="notification-earlier-header">Earlier</h3>
+            <p className="notification-earlier-header">Earlier</p>
             {notifications.map((notification, index) => (
               <div key={index} className={`notification-details-header ${notification.isNew ? 'new-notification' : ''}`} onClick={() => handleNotificationClick(index)}>
                 <p className="notification-subject-header">{notification.subject}</p>
@@ -190,9 +191,86 @@ const AccountAdmin = () =>{
       </div>
       <div className={`dashboard-content ${sidebarMinimized ? 'content-minimized' : ''}`}>
         <div className="account-settings-container">
-          
+          <h1 className="account-settings-header-text">Account Setting</h1>
+          <Link to="/Account/Settings/My Profile">
+            <p className="account-settings-profile-text">My Profile</p>
+          </Link>
+          <Link to="/Account/Settings/Change Password">
+            <p className="account-settings-password-text">Change Password</p>
+          </Link>
+          <Link to="/Account/Settings/Archive Account">
+            <p className="account-settings-archive-text">Archive Account</p>
+          </Link>
         </div>
 
+        <div className="admin-account-edit-container">
+          <div className="edit-account-container">
+            <img className="edit-profile-image" src={defaultAvatar} alt="Profile Picture" />
+            <div className="name-username-container">
+              <p className="name-admin-account">Celmin Shane A. Quizon</p>
+              <p className="username-admin-account">@clmnshn28</p>
+              <button className="button-edit-profile-image">
+                Edit
+                <img className="edit-profile-button-icon" src={editProfile} alt="Edit Profile Icon" />
+              </button>
+            </div>
+          </div>
+
+          <div className="edit-account-container">
+            <div className="personal-info">
+              <h3 className="edit-header-info">Personal Information</h3>
+              <div className="info-row">
+                <div className="info-item">
+                  <span className="info-detail-name">Firstname</span>
+                  <p className="info-details-editable">Francis</p>
+                </div>
+                <div className="info-item">
+                  <span className="info-detail-name">Lastname</span>
+                  <p className="info-details-editable">Havis</p>
+                </div>
+                <div className="info-item">
+                  <span className="info-detail-name">Phone</span>
+                  <p className="info-details-editable">09123892012</p>
+                </div>
+              </div>
+            </div>
+            <button className="button-edit-personal-info">
+              Edit
+              <img className="edit-profile-button-icon" src={editProfile} alt="Edit Profile Icon" />
+            </button>
+          </div>
+          
+          <div className="edit-account-container">
+            <div className="address-info">
+              <h3 className="edit-header-info">Address</h3>
+              <div className="info-row">
+                <div className="info-item">
+                  <span className="info-detail-name">Home number</span>
+                  <p className="info-details-editable">12</p>
+                </div>
+                <div className="info-item">
+                  <span className="info-detail-name">Street Address</span>
+                  <p className="info-details-editable">Everlasting St.</p>
+                </div>
+              </div>
+              <div className="info-row">
+                <div className="info-item">
+                  <span className="info-detail-name">Barangay</span>
+                  <p className="info-details-editable">Bulihan</p>
+                </div>
+                <div className="info-item">
+                  <span className="info-detail-name">City</span>
+                  <p className="info-details-editable">Malolos</p>
+                </div>
+              </div>
+            </div>
+            <button className="button-edit-personal-info">
+              Edit
+              <img className="edit-profile-button-icon" src={editProfile} alt="Edit Profile Icon" />
+            </button>
+          </div>
+
+        </div>
       </div>
     </div>
   );
